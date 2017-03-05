@@ -1,0 +1,152 @@
+<p id="notice"><%= notice %></p>
+<h1>Listing Teams</h1>
+<table id="sortable_table" class="table table-condensed table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>President</th>
+      <th>Coach</th>
+      <th>Stadium</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Player 1</th>
+      <th>Player 2</th>
+      <th>Player 3</th>
+      <th>Player 4</th>
+      <th>Player 5</th>
+      <th>Player 6</th>
+      <th>Player 7</th>
+      <th>Player 8</th>
+      <th>Player 9</th>
+      <th>Player 10</th>
+      <th>Player 11</th>
+      <th>Player 12</th>
+      <th>Player 13</th>
+      <th>Player 14</th>
+      <th>Show more</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.president %></td>
+      <td><%= team.coach %></td>
+      <td><%= team.stadium %></td>
+      <td><%= team.address %></td>
+      <td><%= team.phone %></td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_1 == player.id  %>
+            <%= link_to player.name , player %>
+            <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_2 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_3 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_4 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_5 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_6 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_7 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_8 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_9 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_10 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_11 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_12 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_13 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if team.player_14 == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+
+      <td><%= link_to 'Show', team %></td>
+      <td><%= link_to 'Edit', edit_team_path(team) %></td>
+      <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<script>
+  $(document).ready(function() {
+  $('#sortable_table').DataTable();
+  });
+</script>

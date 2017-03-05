@@ -1,0 +1,98 @@
+<%= form_for(@team) do |f| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :president %><br>
+    <%= f.text_field :president %>
+  </div>
+  <div class="field">
+    <%= f.label :coach %><br>
+    <%= f.text_field :coach %>
+  </div>
+  <div class="field">
+    <%= f.label :stadium %><br>
+    <%= f.text_field :stadium %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :player_1 %><br>
+    <% options = options_from_collection_for_select(@player, 'id', 'name') %>
+    <%= f.select :player_1,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_2 %><br>
+    <%= f.select :player_2,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_3 %><br>
+    <%= f.select :player_3,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_4 %><br>
+    <%= f.select :player_4,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_5 %><br>
+    <%= f.select :player_5,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_6 %><br>
+    <%= f.select :player_6,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_7 %><br>
+    <%= f.select :player_7,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_8 %><br>
+    <%= f.select :player_8,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_9 %><br>
+    <%= f.select :player_9,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_10 %><br>
+    <%= f.select :player_10,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_11 %><br>
+    <%= f.select :player_11,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_12 %><br>
+    <%= f.select :player_12,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_13 %><br>
+    <%= f.select :player_13,  options %>
+  </div>
+  <div class="field">
+    <%= f.label :player_14 %><br>
+    <%= f.select :player_14,  options %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

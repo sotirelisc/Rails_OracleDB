@@ -1,0 +1,216 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>President:</strong>
+  <%= @team.president %>
+</p>
+
+<p>
+  <strong>Coach:</strong>
+  <%= @team.coach %>
+</p>
+
+<p>
+  <strong>Stadium:</strong>
+  <%= @team.stadium %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @team.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @team.phone %>
+</p>
+
+<p>
+  <strong>Player 1:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_1 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 2:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_2 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 3:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_3 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 4:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_4 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 5:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_5 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 6:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_6 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %></p>
+
+<p>
+  <strong>Player 7:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_7 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 8:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_8 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 9:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_9 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 10:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_10 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 11:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_11 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 12:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_12 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 13:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_13 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player 14:</strong>
+  <% @players.each do |player| %>
+    <% if @team.player_14 == player.id  %>
+      <%= link_to player.name , player %>
+      <% end %>
+  <% end %>
+</p>
+<p>--------</p>
+<% sucess = 0 %> <% failure = 0 %> <% draw = 0 %>
+<strong>Καταχωρημένα αποτελέσματα της ομάδας σαν Γηπεδούχος</strong>
+<% @games.each do |game| %>
+<% if @team.id == game.home_team  %>
+  <p><b><%= game.home_team_score %></b> έναντι <%= game.away_team_score %> απο την ομάδα
+    <% @teams.each do |team| %>
+    <% if game.away_team == team.id  %>
+      <%= link_to team.name , team %>
+      <% end %>
+  <% end %>. Result: <% if game.home_team_score >  game.away_team_score %> <% sucess += 1 %>
+  Success
+  <% elsif game.home_team_score == game.away_team_score %> <% draw += 1 %> Draw <% else failure += 1 %> Fail <% end %> </p>
+  <% end %>
+  <% end %>
+
+  <strong>Καταχωρημένα αποτελέσματα της ομάδας σαν φιλοξενούμενος</strong>
+  <% @games.each do |game| %>
+  <% if @team.id == game.away_team  %>
+    <p><b><%= game.away_team_score %></b> έναντι <%= game.home_team_score %> απο την ομάδα
+      <% @teams.each do |team| %>
+      <% if game.home_team == team.id  %>
+        <%= link_to team.name , team %>
+        <% end %>
+    <% end %>. Result: <% if game.away_team_score >  game.home_team_score %> <% sucess += 1 %>
+    Success
+    <% elsif game.away_team_score == game.home_team_score %> <% draw += 1 %> Draw <% else failure += 1 %> Fail <% end %> </p>
+    <% end %>
+    <% end %>
+
+<p>--------</p>
+
+  <div id="piechart" style="width: 900px; height: 500px;"></div><br>
+
+  <script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+
+var data = google.visualization.arrayToDataTable([
+  ['Είδος', 'Αριθμός'],
+  ['Νικες', <%= sucess %>],
+  ['Ηττες', <%= failure %>],
+  ['Ισοπαλίες', <%= draw %>]
+]);
+
+var options = {
+  title: 'Νίκες, ήττες και ισοπαλίες της ομάδας'
+};
+
+var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+chart.draw(data, options);
+}
+  </script>
+
+  <%= link_to 'Edit', edit_team_path(@team) %>
+
+  <%= link_to 'Back', teams_path %>
+  <br><br>

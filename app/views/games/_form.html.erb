@@ -1,0 +1,90 @@
+<%= form_for(@game) do |f| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.text_field :time %>
+  </div>
+  <div class="field">
+    <%= f.label :stadium %><br>
+    <%= f.text_field :stadium %>
+  </div>
+  <div class="field">
+    <%= f.label :attendees %><br>
+    <%= f.number_field :attendees %>
+  </div>
+  <div class="field">
+    <%= f.label :home_team %><br>
+    <% options1 = options_from_collection_for_select(@team, 'id', 'name') %>
+    <%= f.select :home_team,  options1 %>
+  </div>
+  <div class="field">
+    <%= f.label :away_team %><br>
+    <%= f.select :away_team,  options1 %>
+  </div>
+  <div class="field">
+    <%= f.label :round %><br>
+    <%= f.number_field :round %>
+  </div>
+  <div class="field">
+    <%= f.label :home_team_score %><br>
+    <%= f.number_field :home_team_score %>
+  </div>
+  <div class="field">
+    <%= f.label :away_team_score %><br>
+    <%= f.number_field :away_team_score %>
+  </div>
+  <div class="field">
+    <%= f.label :ht_q1 %><br>
+    <%= f.number_field :ht_q1 %>
+  </div>
+  <div class="field">
+    <%= f.label :ht_q2 %><br>
+    <%= f.number_field :ht_q2 %>
+  </div>
+  <div class="field">
+    <%= f.label :ht_q3 %><br>
+    <%= f.number_field :ht_q3 %>
+  </div>
+  <div class="field">
+    <%= f.label :ht_q4 %><br>
+    <%= f.number_field :ht_q4 %>
+  </div>
+  <div class="field">
+    <%= f.label :at_q1 %><br>
+    <%= f.number_field :at_q1 %>
+  </div>
+  <div class="field">
+    <%= f.label :at_q2 %><br>
+    <%= f.number_field :at_q2 %>
+  </div>
+  <div class="field">
+    <%= f.label :at_q3 %><br>
+    <%= f.number_field :at_q3 %>
+  </div>
+  <div class="field">
+    <%= f.label :at_q4 %><br>
+    <%= f.number_field :at_q4 %>
+  </div>
+  <div class="field">
+    <%= f.label :referee %><br>
+    <%= f.text_field :referee %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Games</h1>
+
+<table id="sortable_table" class="table table-condensed table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Stadium</th>
+      <th>Attendees</th>
+      <th>Home team</th>
+      <th>Away team</th>
+      <th>Round</th>
+      <th>Home team score</th>
+      <th>Away team score</th>
+      <th>Ht q1</th>
+      <th>Ht q2</th>
+      <th>Ht q3</th>
+      <th>Ht q4</th>
+      <th>At q1</th>
+      <th>At q2</th>
+      <th>At q3</th>
+      <th>At q4</th>
+      <th>Referee</th>
+      <th>Show more</th>
+      <th>Edit</th>
+      <th>Remove</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.date %></td>
+        <td><%= game.time %></td>
+        <td><%= game.stadium %></td>
+        <td><%= game.attendees %></td>
+        <td><% @teams.each do |team| %>
+          <% if game.home_team == team.id  %>
+            <%= link_to team.name , team %>
+            <% end %>
+        <% end %></td>
+        <td><% @teams.each do |team| %>
+          <% if game.away_team == team.id  %>
+            <%= link_to team.name , team %>
+            <% end %>
+        <% end %></td>
+        <td><%= game.round %></td>
+        <td><%= game.home_team_score %></td>
+        <td><%= game.away_team_score %></td>
+        <td><%= game.ht_q1 %></td>
+        <td><%= game.ht_q2 %></td>
+        <td><%= game.ht_q3 %></td>
+        <td><%= game.ht_q4 %></td>
+        <td><%= game.at_q1 %></td>
+        <td><%= game.at_q2 %></td>
+        <td><%= game.at_q3 %></td>
+        <td><%= game.at_q4 %></td>
+        <td><%= game.referee %></td>
+        <td><%= link_to 'Show', game %></td>
+        <td><%= link_to 'Edit', edit_game_path(game) %></td>
+        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script>
+  $(document).ready(function() {
+  $('#sortable_table').DataTable();
+  });
+</script>

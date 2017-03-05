@@ -1,0 +1,240 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+
+  <div class="col-md-6">
+
+  <% mins_played = 0 %>
+  <% points = 0 %>
+  <% two_goals = 0 %>
+  <% three_goals = 0 %>
+  <% free_throws = 0 %>
+  <% rebounds_off = 0 %>
+  <% rebounds_def = 0 %>
+  <% rebounds_total = 0 %>
+  <% assists = 0%>
+  <% steals = 0 %>
+  <% turnovers = 0%>
+  <% blocks_in_favor = 0%>
+  <% blocks_against = 0%>
+  <% fouls_commited = 0%>
+  <% fouls_received = 0%>
+  <% pir = 0%>
+
+  <% @stats.each do |stat| %>
+  <h4>Καταχωρημένα στατιστικά του παίχτη</h4>
+  <% if @player.id == stat.player_id  %>
+
+  <p>
+    <strong>Mins played:</strong>
+    <%= stat.mins_played %> <% mins_played += stat.mins_played %>
+  </p>
+
+  <p>
+    <strong>Points:</strong>
+    <%= stat.points %><% points += stat.points %>
+  </p>
+
+  <p>
+    <strong>Two p field goals:</strong>
+    <%= stat.two_p_field_goals %><% two_goals += stat.two_p_field_goals %>
+  </p>
+
+  <p>
+    <strong>Three p field goals:</strong>
+    <%= stat.three_p_field_goals %><% three_goals += stat.three_p_field_goals %>
+  </p>
+
+  <p>
+    <strong>Free throws:</strong>
+    <%= stat.free_throws %><% free_throws += stat.free_throws %>
+  </p>
+
+  <p>
+    <strong>Rebounds off:</strong>
+    <%= stat.rebounds_off %> <% rebounds_off += stat.rebounds_off %>
+  </p>
+
+  <p>
+    <strong>Rebounds def:</strong>
+    <%= stat.rebounds_def %> <% rebounds_def += stat.rebounds_def %>
+  </p>
+
+  <p>
+    <strong>Rebounds total:</strong>
+    <%= stat.rebounds_total %><% rebounds_total += stat.rebounds_total %>
+  </p>
+
+  <p>
+    <strong>Assists:</strong>
+    <%= stat.assists %> <% assists += stat.assists %>
+  </p>
+
+  <p>
+    <strong>Steals:</strong>
+    <%= stat.steals %> <% steals += stat.steals %>
+  </p>
+
+  <p>
+    <strong>Turnovers:</strong>
+    <%= stat.turnovers %><% turnovers += stat.turnovers %>
+  </p>
+
+  <p>
+    <strong>Blocks in favor:</strong>
+    <%= stat.blocks_in_favor %> <% blocks_in_favor += stat.blocks_in_favor %>
+  </p>
+
+  <p>
+    <strong>Blocks against:</strong>
+    <%= stat.blocks_against %> <% blocks_against += stat.blocks_against %>
+  </p>
+
+  <p>
+    <strong>Fouls commited:</strong>
+    <%= stat.fouls_commited %> <% fouls_commited += stat.fouls_commited %>
+  </p>
+
+  <p>
+    <strong>Fouls received:</strong>
+    <%= stat.fouls_received %> <% fouls_received += stat.fouls_received %>
+  </p>
+
+  <p>
+    <strong>Pir:</strong>
+    <%= stat.pir %> <% pir += stat.pir %>
+  </p> <br>
+
+  <% end %>
+
+  <% end %>
+
+  </div>
+
+  <div class="col-md-6">
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @player.avatar.url(:medium) %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @player.height %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @player.dob %>
+</p>
+
+<p>
+  <strong>Nationality:</strong>
+  <%= @player.nationality %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @player.position %>
+</p>
+
+<p>
+  <strong>P number:</strong>
+  <%= @player.p_number %>
+</p><br>
+<h4>BarChart</h4>
+<div id="chart_div"></div> <br>
+<h4>Gauge Chart</h4>
+<div id="chart_gauge" style="width: 400px; height: 120px;"></div>
+
+</div>
+</div>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>
+
+<script>
+google.charts.load('current', {packages: ['corechart', 'bar', 'gauge']});
+google.charts.setOnLoadCallback(drawAxisTickColors);
+
+function drawAxisTickColors() {
+      var data = google.visualization.arrayToDataTable([
+        ['Player', '<%= @player.name %>'],
+        ['Total Points', <%= points %>],
+        ['Total Rebounds', <%= rebounds_total %>],
+        ['Blocks in Favor', <%= blocks_in_favor %>],
+        ['Fouls Committed', <%= fouls_commited %>]
+      ]);
+
+      var options = {
+        title: 'BarChart w/ Points, total rebounds, blocks in favor, fouls committed',
+        chartArea: {width: '60%'},
+        hAxis: {
+          title: 'Numbers',
+          minValue: 0,
+          textStyle: {
+            fontSize: 12,
+            color: '#4d4d4d'
+          },
+          titleTextStyle: {
+            fontSize: 18,
+            color: '#848484'
+          }
+        },
+        vAxis: {
+          title: 'City',
+          textStyle: {
+            fontSize: 14,
+            color: '#848484'
+          },
+          titleTextStyle: {
+            fontSize: 14,
+            color: '#848484'
+          }
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+</script>
+
+<script>
+
+     google.charts.setOnLoadCallback(drawChart);
+     function drawChart() {
+
+       var data = google.visualization.arrayToDataTable([
+         ['Type', 'Value'],
+         ['2 points', <%= two_goals %>],
+         ['3 points', <%= three_goals %>],
+         ['Free throws', <%= free_throws %>]
+       ]);
+
+       var options = {
+         width: 400, height: 120,
+         redFrom: 50, redTo: 60,
+         yellowFrom:30, yellowTo: 49,
+         minorTicks: 2
+       };
+
+       var chart = new google.visualization.Gauge(document.getElementById('chart_gauge'));
+
+       chart.draw(data, options);
+
+       setInterval(function() {
+         data.setValue(0);
+         chart.draw(data, options);
+       }, 1);
+       setInterval(function() {
+         data.setValue(0);
+         chart.draw(data, options);
+       }, 1);
+       setInterval(function() {
+         data.setValue(0);
+         chart.draw(data, options);
+       }, 1);
+     }
+</script>

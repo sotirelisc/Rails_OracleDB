@@ -1,0 +1,50 @@
+<%= form_for @player, html: { multipart: true } do |f| %>
+  <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% @player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar, html: { class: 'form-control' } %>
+    <% if f.object.avatar? %>
+      <br />
+      <%= image_tag(f.object.avatar.url(:thumb)) %><br />
+      <em> Currently Embedded Image</em>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.number_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br>
+    <%= f.text_field :dob %>
+  </div>
+  <div class="field">
+    <%= f.label :nationality %><br>
+    <%= f.text_field :nationality %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br>
+    <%= f.text_field :position %>
+  </div>
+  <div class="field">
+    <%= f.label :p_number %><br>
+    <%= f.number_field :p_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

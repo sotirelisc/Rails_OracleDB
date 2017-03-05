@@ -1,0 +1,2 @@
+json.extract! game, :id, :date, :time, :stadium, :attendees, :home_team, :away_team, :round, :home_team_score, :away_team_score, :ht_q1, :ht_q2, :ht_q3, :ht_q4, :at_q1, :at_q2, :at_q3, :at_q4, :referee, :created_at, :updated_at
+json.url game_url(game, format: :json)

@@ -1,0 +1,100 @@
+<%= form_for@stat, html: { multipart: true } do |f| %>
+  <% if @stat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stat.errors.count, "error") %> prohibited this stat from being saved:</h2>
+
+      <ul>
+      <% @stat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :file %><br>
+    <%= f.file_field :file, html: { class: 'form-control' } %>
+    <% if f.object.file? %>
+      <br />
+      <%= link_to "Download .txt file", @stat.file.url(:original, false) %><br />
+      <em> Currently Uploaded file</em>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :player_id %><br>
+    <% options3 = options_from_collection_for_select(@players, 'id', 'name') %>
+    <%= f.select :player_id,  options3 %>
+  </div>
+  <div class="field">
+    <%= f.label :game_id %><br>
+    <% options4 = options_from_collection_for_select(@games, 'id', 'id') %>
+    <%= f.select :game_id,  options4 %>
+  </div>
+  <div class="field">
+    <%= f.label :mins_played %><br>
+    <%= f.number_field :mins_played %>
+  </div>
+  <div class="field">
+    <%= f.label :points %><br>
+    <%= f.number_field :points %>
+  </div>
+  <div class="field">
+    <%= f.label :two_p_field_goals %><br>
+    <%= f.number_field :two_p_field_goals %>
+  </div>
+  <div class="field">
+    <%= f.label :three_p_field_goals %><br>
+    <%= f.number_field :three_p_field_goals %>
+  </div>
+  <div class="field">
+    <%= f.label :free_throws %><br>
+    <%= f.number_field :free_throws %>
+  </div>
+  <div class="field">
+    <%= f.label :rebounds_off %><br>
+    <%= f.number_field :rebounds_off %>
+  </div>
+  <div class="field">
+    <%= f.label :rebounds_def %><br>
+    <%= f.number_field :rebounds_def %>
+  </div>
+  <div class="field">
+    <%= f.label :rebounds_total %><br>
+    <%= f.number_field :rebounds_total %>
+  </div>
+  <div class="field">
+    <%= f.label :assists %><br>
+    <%= f.number_field :assists %>
+  </div>
+  <div class="field">
+    <%= f.label :steals %><br>
+    <%= f.number_field :steals %>
+  </div>
+  <div class="field">
+    <%= f.label :turnovers %><br>
+    <%= f.number_field :turnovers %>
+  </div>
+  <div class="field">
+    <%= f.label :blocks_in_favor %><br>
+    <%= f.number_field :blocks_in_favor %>
+  </div>
+  <div class="field">
+    <%= f.label :blocks_against %><br>
+    <%= f.number_field :blocks_against %>
+  </div>
+  <div class="field">
+    <%= f.label :fouls_commited %><br>
+    <%= f.number_field :fouls_commited %>
+  </div>
+  <div class="field">
+    <%= f.label :fouls_received %><br>
+    <%= f.number_field :fouls_received %>
+  </div>
+  <div class="field">
+    <%= f.label :pir %><br>
+    <%= f.number_field :pir %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

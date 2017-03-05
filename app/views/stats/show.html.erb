@@ -1,0 +1,120 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>.txt File:</strong>
+  <% if @stat.file.exists? %>
+    <%= link_to "Download .txt file", @stat.file.url(:original, false) %>
+  <% else %> <i>No file uploaded</i>
+  <% end %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <% @players.each do |player| %>
+    <% if @stat.player_id == player.id  %>
+      <%= link_to player.name , player %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <% @games.each do |game| %>
+    <% if @stat.game_id == game.id  %>
+      <% @teams.each do |team| %>
+        <% if game.home_team == team.id  %>
+          <%= team.name %>
+        <% end %>
+      <% end %>
+      +
+      <% @teams.each do |team| %>
+        <% if game.away_team == team.id  %>
+          <%= team.name %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Mins played:</strong>
+  <%= @stat.mins_played %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @stat.points %>
+</p>
+
+<p>
+  <strong>Two p field goals:</strong>
+  <%= @stat.two_p_field_goals %>
+</p>
+
+<p>
+  <strong>Three p field goals:</strong>
+  <%= @stat.three_p_field_goals %>
+</p>
+
+<p>
+  <strong>Free throws:</strong>
+  <%= @stat.free_throws %>
+</p>
+
+<p>
+  <strong>Rebounds off:</strong>
+  <%= @stat.rebounds_off %>
+</p>
+
+<p>
+  <strong>Rebounds def:</strong>
+  <%= @stat.rebounds_def %>
+</p>
+
+<p>
+  <strong>Rebounds total:</strong>
+  <%= @stat.rebounds_total %>
+</p>
+
+<p>
+  <strong>Assists:</strong>
+  <%= @stat.assists %>
+</p>
+
+<p>
+  <strong>Steals:</strong>
+  <%= @stat.steals %>
+</p>
+
+<p>
+  <strong>Turnovers:</strong>
+  <%= @stat.turnovers %>
+</p>
+
+<p>
+  <strong>Blocks in favor:</strong>
+  <%= @stat.blocks_in_favor %>
+</p>
+
+<p>
+  <strong>Blocks against:</strong>
+  <%= @stat.blocks_against %>
+</p>
+
+<p>
+  <strong>Fouls commited:</strong>
+  <%= @stat.fouls_commited %>
+</p>
+
+<p>
+  <strong>Fouls received:</strong>
+  <%= @stat.fouls_received %>
+</p>
+
+<p>
+  <strong>Pir:</strong>
+  <%= @stat.pir %>
+</p>
+
+<%= link_to 'Edit', edit_stat_path(@stat) %> |
+<%= link_to 'Back', stats_path %>

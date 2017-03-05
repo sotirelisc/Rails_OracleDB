@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  president: MyString
+  coach: MyString
+  stadium: MyString
+  address: MyString
+  phone: MyString
+  player_1: 1
+  player_2: 1
+  player_3: 1
+  player_4: 1
+  player_5: 1
+  player_6: 1
+  player_7: 1
+  player_8: 1
+  player_9: 1
+  player_10: 1
+  player_11: 1
+  player_12: 1
+  player_13: 1
+  player_14: 1
+
+two:
+  name: MyString
+  president: MyString
+  coach: MyString
+  stadium: MyString
+  address: MyString
+  phone: MyString
+  player_1: 1
+  player_2: 1
+  player_3: 1
+  player_4: 1
+  player_5: 1
+  player_6: 1
+  player_7: 1
+  player_8: 1
+  player_9: 1
+  player_10: 1
+  player_11: 1
+  player_12: 1
+  player_13: 1
+  player_14: 1

@@ -1,0 +1,2 @@
+json.extract! team, :id, :name, :president, :coach, :stadium, :address, :phone, :player_1, :player_2, :player_3, :player_4, :player_5, :player_6, :player_7, :player_8, :player_9, :player_10, :player_11, :player_12, :player_13, :player_14, :created_at, :updated_at
+json.url team_url(team, format: :json)

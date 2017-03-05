@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Players</h1>
+
+<table id="sortable_table" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Height</th>
+      <th>Dob</th>
+      <th>Nationality</th>
+      <th>Position</th>
+      <th>P number</th>
+      <th>Show more</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= image_tag player.avatar.url(:thumb ) %></td>
+
+        <td><%= player.name %></td>
+        <td><%= player.height %></td>
+        <td><%= player.dob %></td>
+        <td><%= player.nationality %></td>
+        <td><%= player.position %></td>
+        <td><%= player.p_number %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script>
+  $(document).ready(function() {
+  $('#sortable_table').DataTable();
+  });
+</script>

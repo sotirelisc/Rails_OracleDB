@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Stats</h1>
+
+<table id="sortable_table" class="table table-condensed table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Player</th>
+      <th>Game</th>
+      <th>Mins played</th>
+      <th>Points</th>
+      <th>Two p field goals</th>
+      <th>Three p field goals</th>
+      <th>Free throws</th>
+      <th>Rebounds off</th>
+      <th>Rebounds def</th>
+      <th>Rebounds total</th>
+      <th>Assists</th>
+      <th>Steals</th>
+      <th>Turnovers</th>
+      <th>Blocks in favor</th>
+      <th>Blocks against</th>
+      <th>Fouls commited</th>
+      <th>Fouls received</th>
+      <th>Pir</th>
+      <th>Show more</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stats.each do |stat| %>
+    <tr>
+      <td><% if stat.file.exists? %>
+            <%= link_to "Download", stat.file.url(:original, false) %>
+          <% else %>
+            <i>No file uploaded</i>
+          <% end %> </td>
+      <td>
+        <% @players.each do |player| %>
+          <% if stat.player_id == player.id  %>
+            <%= link_to player.name , player %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% @games.each do |game| %>
+          <% if stat.game_id == game.id  %>
+            <% @teams.each do |team| %>
+              <% if game.home_team == team.id  %>
+                <%= team.name %>
+              <% end %>
+            <% end %>
+            +
+            <% @teams.each do |team| %>
+              <% if game.away_team == team.id  %>
+                <%= team.name %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= stat.mins_played %></td>
+      <td><%= stat.points %></td>
+      <td><%= stat.two_p_field_goals %></td>
+      <td><%= stat.three_p_field_goals %></td>
+      <td><%= stat.free_throws %></td>
+      <td><%= stat.rebounds_off %></td>
+      <td><%= stat.rebounds_def %></td>
+      <td><%= stat.rebounds_total %></td>
+      <td><%= stat.assists %></td>
+      <td><%= stat.steals %></td>
+      <td><%= stat.turnovers %></td>
+      <td><%= stat.blocks_in_favor %></td>
+      <td><%= stat.blocks_against %></td>
+      <td><%= stat.fouls_commited %></td>
+      <td><%= stat.fouls_received %></td>
+      <td><%= stat.pir %></td>
+      <td><%= link_to 'Show', stat %></td>
+      <td><%= link_to 'Edit', edit_stat_path(stat) %></td>
+      <td><%= link_to 'Destroy', stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<script>
+  $(document).ready(function() {
+  $('#sortable_table').DataTable();
+  });
+</script>
